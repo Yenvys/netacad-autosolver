@@ -12,7 +12,6 @@ Dirancang khusus untuk menembus arsitektur *nested iframe* (`all_frames: true`),
 * **Mode Manual Pick + Auto-Submit (Berjalan Tanpa Kuota API)**: Tetap berfungsi penuh meskipun seluruh kuota API habis atau mode AI dimatikan. Saat pengguna mengklik sendiri opsi jawaban di layar (1 opsi untuk *radio*, atau sejumlah `N` opsi untuk soal *Choose two / Choose three*), ekstensi otomatis menekan tombol **Submit** dan **Next**.
 * **4 Level Penghematan Kuota API (Token Saver)**: Mengatur konsumsi token mulai dari mode teks murni hingga mode *Vision HD* dan *Extended Thinking*.
 * **Memori Cache Soal Lokal (`0 Kuota`)**: Menyimpan jawaban soal yang pernah diselesaikan ke dalam `chrome.storage.local` (`answerCache`). Saat halaman dimuat ulang atau kuis diulang, jawaban langsung diambil dari memori lokal tanpa memanggil API.
-* **Expandable Detail & Explanation Drawer**: Menyediakan tombol **Detail** pada panel *Floating HUD* maupun *Popup* untuk melihat penjelasan lengkap alasan jawaban AI, sumber *Slot API Key* yang digunakan, serta detail diagnostik saat menguji koneksi API.
 
 ## Perbandingan 4 Level Kuota AI
 
