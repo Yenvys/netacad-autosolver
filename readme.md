@@ -23,15 +23,6 @@ Dirancang khusus untuk menembus arsitektur *nested iframe* (`all_frames: true`),
 | **Pro (`LVL 3`)** | Aktif (Kompresi JPEG 50% + sembunyikan HUD otomatis selama 60ms) | Prompt lengkap + alasan jawaban terstruktur | Hemat hingga ~50% kuota token |
 | **Max (`LVL 4`)** | Aktif (Resolusi Tinggi JPEG 80%) | Analisis mendalam untuk soal topologi, *subnetting*, dan VLSM | Mode akurasi maksimal |
 
-## Dukungan Provider & Endpoint Model AI
-
-| Provider | Daftar Model Bawaan di Dropdown | Dukungan Input |
-| :--- | :--- | :--- |
-| **Google Gemini 3 Series** | `gemini-3.8-flash` *(Default)*, `gemini-3.5-flash-lite`, `gemini-3.1-flash-lite`, `gemini-3.6-flash`, `gemini-3-flash-preview`, `gemini-omni-1.1-flash`, `gemini-3.1-pro-preview`, `gemini-3.8-live`, `gemini-3.8-live-extended-thinking`, `gemini-3.1-flash-live-preview`, `gemini-nano-banana-2.1`, `gemini-3.1-flash-image`, `gemini-3.1-flash-lite-image`, `gemini-3-pro-image`, `gemini-3.5-transcribe`, `gemini-3.5-transcribe-live`, `gemini-3.5-live-translate-preview`, `gemini-3.8-flash-tts`, `gemini-3.8-flash-lite-tts`, `gemini-3.1-flash-tts-preview` | Teks & Multimodal Vision |
-| **OpenRouter** | `google/gemini-3.8-flash`, `google/gemini-3.5-flash-lite`, `google/gemini-3.6-flash`, `google/gemini-3.1-pro-preview`, serta dukungan *Custom Model ID* | Teks & Multimodal Vision |
-| **OpenAI Compatible** | `gpt-4o-mini`, `gpt-4o`, `o3-mini` | Teks & Multimodal Vision |
-| **Groq Cloud** | `llama-3.3-70b-versatile`, `deepseek-r1-distill-llama-70b` | Teks Kecepatan Tinggi |
-
 ## Struktur Direktori Proyek
 
 ```text
