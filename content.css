@@ -1,0 +1,329 @@
+/* NetAcad Assistant v1.8.0 - Soft Minimalist HUD with Expandable Detail Drawer */
+
+#netacad-ai-hud {
+  position: fixed;
+  bottom: 74px;
+  right: 22px;
+  width: 300px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.09), 0 2px 6px rgba(15, 23, 42, 0.04);
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  font-size: 12px;
+  z-index: 2147483647;
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#netacad-ai-hud.nai-hidden,
+#netacad-ai-hud.nai-temp-capture-hide {
+  display: none !important;
+}
+
+#netacad-ai-hud.nai-minimized .nai-body {
+  display: none !important;
+}
+
+.nai-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 11px;
+  background: #f8fafc;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: move;
+  user-select: none;
+}
+
+.nai-brand {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 600;
+  color: #475569;
+  font-size: 11.5px;
+}
+
+.nai-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  transition: background 0.2s ease;
+}
+
+.nai-dot.active {
+  background: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.16);
+}
+
+.nai-dot.manual {
+  background: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.16);
+}
+
+.nai-dot.working {
+  background: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18);
+}
+
+.nai-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nai-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  border-radius: 7px;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+
+.nai-icon-btn:hover {
+  background: #eef2ff;
+  color: #4f46e5;
+  border-color: #c7d2fe;
+}
+
+.nai-icon-btn.is-on {
+  background: #eef2ff;
+  color: #4f46e5;
+  border-color: #a5b4fc;
+}
+
+.nai-icon-btn svg {
+  width: 13px;
+  height: 13px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nai-body {
+  padding: 10px 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.nai-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  background: #f8fafc;
+  padding: 6px 9px;
+  border-radius: 9px;
+  border: 1px solid #f1f5f9;
+}
+
+.nai-status-text {
+  font-size: 11.5px;
+  color: #334155;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.nai-status-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.nai-badge {
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+/* Expand Detail Button on HUD */
+.nai-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #475569;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nai-expand-btn:hover,
+.nai-expand-btn.expanded {
+  background: #eef2ff;
+  color: #4f46e5;
+  border-color: #c7d2fe;
+}
+
+.nai-expand-btn svg {
+  width: 11px;
+  height: 11px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  fill: none;
+  transition: transform 0.2s ease;
+}
+
+.nai-expand-btn.expanded svg {
+  transform: rotate(180deg);
+}
+
+/* Answer Summary Bar */
+.nai-answer-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 9px;
+  padding: 6px 9px;
+  font-size: 11.5px;
+}
+
+.nai-answer-key {
+  font-weight: 600;
+  color: #15803d;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Expandable Detail & Explanation Drawer */
+.nai-detail-drawer {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  padding: 8px 10px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: #334155;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 170px;
+  overflow-y: auto;
+}
+
+.nai-detail-drawer.open {
+  display: flex;
+}
+
+.nai-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 10px;
+  color: #64748b;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 4px;
+}
+
+.nai-detail-chip {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 1px 6px;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.nai-detail-chip.fallback {
+  background: #fef3c7;
+  border-color: #fde68a;
+  color: #b45309;
+}
+
+.nai-detail-explanation {
+  color: #334155;
+  word-break: break-word;
+}
+
+.nai-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nai-pill-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  font-weight: 500;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nai-pill-btn svg {
+  width: 13px;
+  height: 13px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nai-pill-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.nai-pill-btn.primary {
+  background: #6366f1;
+  color: #ffffff;
+  border-color: #6366f1;
+}
+
+.nai-pill-btn.primary:hover {
+  background: #4f46e5;
+}
+
+.nai-pill-btn.active-mode {
+  background: #ecfdf5;
+  color: #059669;
+  border-color: #a7f3d0;
+}
+
+.nai-correct-highlight {
+  outline: 2px solid #818cf8 !important;
+  background-color: rgba(99, 102, 241, 0.06) !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+}
+
+.nai-stealth-highlight {
+  box-shadow: inset 3px 0 0 #a5b4fc !important;
+}
